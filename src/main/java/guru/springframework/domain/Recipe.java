@@ -26,10 +26,24 @@ public class Recipe {
      private String url;
      private String directions;
 
+     @ManyToMany
+     @JoinTable(name="recipe_category_nish",
+     joinColumns = @JoinColumn(name="recipe_id"),
+     inverseJoinColumns = @JoinColumn(name="category_id"))
+     private Set<Category> categories;
+
      @OneToMany(cascade = CascadeType.ALL, mappedBy="recipe")
      private Set<Ingredient> ingredients;
 
-     @Lob
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
+    }
+
+    @Lob
      private Byte[] image;
 
      @Enumerated(value = EnumType.STRING)
