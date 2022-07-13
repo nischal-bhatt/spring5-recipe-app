@@ -32,7 +32,26 @@ public class Recipe {
      @Lob
      private Byte[] image;
 
-     @OneToOne(cascade= CascadeType.ALL)
+     @Enumerated(value = EnumType.STRING)
+     private Difficulty difficulty;
+
+    public Set<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(Set<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    @OneToOne(cascade= CascadeType.ALL)
      private Notes notes;
 
     public String getDescription() {
